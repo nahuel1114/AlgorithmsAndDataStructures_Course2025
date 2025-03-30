@@ -40,7 +40,11 @@ public:
 
     ~LinkedList()
     {
-        throw std::runtime_error("Not implemented yet");
+        while(head != nullptr){
+            auto temp = head;
+            head = head->next;
+            delete temp;
+        }
     }
 
     /**
@@ -50,7 +54,9 @@ public:
      */
     void push_front(const TData& value)
     {
-        throw std::runtime_error("Not implemented yet");
+        auto temp = new ListNode<TData>(value);
+        temp->next = head;
+        head = temp;
     }
 
     /**
@@ -60,16 +66,59 @@ public:
     */
     void remove_at(size_t position)
     {
-        throw std::runtime_error("Not implemented yet");
+        if(position < 1 or head == nullptr){
+            std::cout << "Numero de posicion invalido."<< std::endl;
+            return;
+        }
+
+        ListNode<TData>* actual = head;
+
+        if (position == 1) {
+            head = actual->next;
+            delete actual;
+            return;
+        }
+
+        ListNode<TData>* previous = nullptr;
+        for (size_t i = 1; i < position && actual != nullptr; i++) {
+            previous = actual;
+            actual = actual->next;
+        }
+        if(actual != nullptr){
+            previous->next = actual->next;
+            delete actual;
+            return;
+        }
+        std::cout << "Numero de posicion invalido."<< std::endl;
     }
 
     /**
     * @brief Crea una lista nueva de n elementos a partir de una posición dada
     *
     */
-    ListNode<TData>* take(size_t startPosition, size_t nElements)
+    LinkedList<TData>* take(size_t startPosition, size_t nElements)  //retornaba un ListNode, ahora una LinkedList, si nElements es tipo size_t no se puede corrdborar que no sea negativo
     {
-        throw std::runtime_error("Not implemented yet");
+        if(startPosition < 1 or nElements == 0 or head == nullptr){
+            std::cout << "Parametros incorrectos."<< std::endl;
+            return nullptr;
+        }
+        LinkedList<TData>* nueva = new LinkedList<TData>();
+        ListNode<TData>* temporal = head;
+        for (size_t i = 1; i < startPosition && temporal != nullptr; i++) {
+            temporal = temporal->next;
+        }
+
+        nueva->head = temporal;
+
+        if(temporal != nullptr){
+            for (size_t i = 1; i < nElements && temporal != nullptr; i++) {
+                temporal = temporal->next;
+            }
+            if(temporal != nullptr){
+                temporal->next = nullptr;
+            }
+        }
+        return nueva;
     }
 
     /**
@@ -126,7 +175,11 @@ public:
 
     ~DoublyLinkedList()
     {
-        throw std::runtime_error("Not implemented yet");
+        while(head != nullptr){
+            auto temp = head;
+            head = head->next;
+            delete temp;
+        }
     }
 
     /**
@@ -136,7 +189,14 @@ public:
      */
     void push_front(const TData& value)
     {
-        throw std::runtime_error("Not implemented yet");
+        auto temp = new DoublyListNode<TData>(value);
+        if (head == nullptr) {
+            head = temp;
+        } else {
+            temp->next = head;
+            head->prev = temp;
+            head = temp;
+        }
     }
 
     /**
@@ -146,7 +206,19 @@ public:
      */
     void push_back(const TData& value)
     {
-        throw std::runtime_error("Not implemented yet");
+        auto temp = new DoublyListNode<TData>(value);
+
+        if (head == nullptr) {
+            head = temp;
+        }
+        else {
+            auto current = head;
+            while (current->next != nullptr) {
+                current = current->next;
+            }
+            current->next = temp;
+            temp->prev = current;
+        }
     }
 
     /**
@@ -156,7 +228,37 @@ public:
     */
     void remove_at(size_t position)
     {
-        throw std::runtime_error("Not implemented yet");
+        if (position < 1 or head == nullptr) {
+            std::cout << "Numero de posicion invalido."<< std::endl;
+            return;
+        }
+
+        DoublyListNode<TData>* actual = head;
+
+        if (position == 1) {
+            head = actual->next;
+            if (head != nullptr) {
+                head->prev = nullptr;
+            }
+            delete actual;
+            return;
+        }
+
+        for (size_t i = 1; i < position && actual != nullptr; i++) {
+            actual = actual->next;
+        }
+
+        if(actual != nullptr){
+            auto prev = actual->prev;
+            auto sig = actual->next;
+            prev->next = sig;
+            if(sig != nullptr){
+                sig->prev = prev;
+            }
+            delete actual;
+            return;
+        }
+        std::cout << "Numero de posicion invalido."<< std::endl;
     }
 
     /**
