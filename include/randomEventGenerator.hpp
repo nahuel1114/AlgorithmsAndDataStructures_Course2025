@@ -2,7 +2,6 @@
 #define RANDOM_EVENT_GENERATOR_HPP
 
 #include <random>
-#include <string>
 #include <vector>
 
 /**
