@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 #include "list.hpp"
 
- /**===== BORRAME CUANDO TENGAS TODO LISTO =====
 TEST(LinkedListTest, PushFrontAndPrint) {
     LinkedList<int> list;
     list.push_front(3);
@@ -67,4 +66,3 @@ TEST(DoublyLinkedListTest, CopyList) {
     EXPECT_EQ(list2.get_head()->data, 1);
     EXPECT_EQ(list2.get_head()->next->data, 2);
 }
- ===== BORRAME CUANDO TENGAS TODO LISTO =====*/

@@ -5,6 +5,9 @@
 #include "randomEventGenerator.hpp"
 #include "refugio.hpp"
 #include "engineData.hpp"
+#include "event.h"
+#include "queue.hpp"
+#include "stack.hpp"
 #include <chrono>
 #include <filesystem>
 #include <iostream>
@@ -122,10 +125,16 @@ private:
      */
     void loadConfig();
 
+    void onNewEvent(const Event& evento);
+
+    void registerDecision(const std::string& accion);
+
     EngineData::PlayerInfo m_player;        //< Información del jugador
     RandomEventGenerator m_randomGenerator; //< Generador de eventos aleatorios
     EngineData::GameConfig m_gameConfig;    //< Configuración del juego
     std::unique_ptr<Refugio> m_shelter;     //< Refugio del jugador
+    Queue<Event> m_eventosPendientes;
+    Stack<std::string> m_historialDecisiones;
 
     /**
      * @brief: Operaciones que puede realizar el jugador
@@ -135,6 +144,7 @@ private:
         SHOW_STATUS, //< Muestra el estado actual del refugio
         SHOW_EVENTS, //< Muestra los eventos aleatorios
         CHECK_EVENT, //< Muestra el evento actual
+        SHOW_HISTORY, //<Muestra el historial de decisiones
         EXPLORE,     //< Explora el mapa
         FIGHT,       //< Lucha contra un enemigo
         EXIT,        //< Salir del juego

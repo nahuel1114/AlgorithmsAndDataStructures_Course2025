@@ -2,7 +2,7 @@
 // Created by nahue on 5/4/2025.
 //
 
-#include "list.hpp"
+#include "../include/dataStructures/list.hpp"
 
 template<typename TData>
 LinkedList<TData>::LinkedList()

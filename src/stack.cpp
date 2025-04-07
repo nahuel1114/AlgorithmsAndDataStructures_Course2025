@@ -2,7 +2,9 @@
 // Created by nahue on 5/4/2025.
 //
 
-#include "stack.hpp"
+#include "../include/dataStructures/stack.hpp"
+
+#include <iostream>
 
 template<typename TData>
 Stack<TData>::Stack()
@@ -66,4 +68,16 @@ template<typename TData>
 size_t Stack<TData>::size() const
 {
     return m_size;
+}
+
+template<typename TData>
+void Stack<TData>::print() const
+{
+    auto temp = m_top;
+    while(temp != nullptr)
+    {
+        std::cout << temp->data << " ";
+        temp = temp->next;
+    }
+    delete temp;
 }

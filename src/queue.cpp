@@ -2,7 +2,9 @@
 // Created by nahue on 5/4/2025.
 //
 
-#include "queue.hpp"
+#include "../include/dataStructures/queue.hpp"
+
+#include <iostream>
 
 template<typename TData>
 Queue<TData>::Queue()
@@ -67,3 +69,17 @@ size_t Queue<TData>::getSize() const
 {
     return m_size;
 }
+
+template<typename TData>
+void Queue<TData>::print() const
+{
+    Node* temp = m_front;
+    while (temp != nullptr)
+    {
+        std::cout << temp->data << " ";
+        temp = temp->next;
+    }
+    delete temp;
+}
+
+

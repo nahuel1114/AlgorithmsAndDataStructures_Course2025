@@ -150,6 +150,18 @@ void Engine::interactiveConsole()
                     std::cout << "Mostrando detalles..." << std::endl;
                     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                     break;
+                case Operation::SHOW_EVENTS:
+                    std::cout<<"Mostrando eventos pendientes..."<< std::endl;
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                    m_eventosPendientes.print();
+                case Operation::CHECK_EVENT:
+                    std::cout<<"Mostrando evento actual..."<< std::endl;
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                    std::cout<<m_eventosPendientes.front().m_description << std::endl;
+                case Operation::SHOW_HISTORY:
+                    std::cout<<"Mostrando historial del jugador..."<<std::endl;
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                    m_historialDecisiones.print();
                 case Operation::EXIT:
                     std::cout << "Saliendo..." << std::endl;
                     keepRunning = false;
@@ -262,6 +274,17 @@ void Engine::loadGame()
 
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
+
+void Engine::onNewEvent(const Event& evento)
+{
+    m_eventosPendientes.enqueue(evento);
+}
+
+void Engine::registerDecision(const std::string& accion)
+{
+    m_historialDecisiones.push(accion);
+}
+
 
 void Engine::loadConfig()
 {

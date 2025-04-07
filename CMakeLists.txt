@@ -16,9 +16,10 @@ file(GLOB_RECURSE SRC_FILES "${CMAKE_SOURCE_DIR}/src/*.cpp")
 
 # Define el ejecutable y sus archivos fuente
 add_executable(${CMAKE_PROJECT_NAME} ${SRC_FILES}
-        include/dataStructures/queue.cpp
-        include/dataStructures/stack.cpp
-        include/dataStructures/list.cpp)
+        src/queue.cpp
+        src/stack.cpp
+        src/list.cpp
+        include/event.h)
 
 # Establece el directorio de inclusión para los archivos de cabecera usando target_include_directories
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/include")

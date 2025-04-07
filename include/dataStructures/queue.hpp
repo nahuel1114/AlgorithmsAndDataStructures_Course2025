@@ -78,6 +78,8 @@ public:
      * @return size_t tamaño de la cola
      */
     size_t getSize() const;
+
+    void print() const;
 };
 
 #endif // QUEUE_HPP
