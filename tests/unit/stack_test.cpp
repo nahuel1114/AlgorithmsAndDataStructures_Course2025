@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include "stack.hpp"
 
-/** ===== BORRAME CUANDO TENGAS TODO LISTO =====
+
 TEST(StackTest, PushPopTop) {
     Stack<int> s;
     EXPECT_TRUE(s.isEmpty());
@@ -32,4 +32,3 @@ TEST(StackTest, StackSize) {
     s.pop();
     EXPECT_EQ(s.size(), 2);
 }
-===== BORRAME CUANDO TENGAS TODO LISTO ===== */
