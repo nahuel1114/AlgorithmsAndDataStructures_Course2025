@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "list.hpp"
 
- /**===== BORRAME CUANDO TENGAS TODO LISTO =====
+/**===== BORRAME CUANDO TENGAS TODO LISTO =====
 TEST(LinkedListTest, PushFrontAndPrint) {
     LinkedList<int> list;
     list.push_front(3);
