@@ -57,13 +57,16 @@ public:
      * @param name Nombre del refugiado
      * @param isFromVault Indica si proviene de un Vault o de la superficie
      */
-    explicit Refugee(const std::string& name,
-                       bool isFromVault,
-                       std::unordered_map<EngineData::Resources, uint8_t> bag)
+    explicit Refugee(const std::string& name, bool isFromVault, std::unordered_map<EngineData::Resources, uint8_t> bag)
         : EntidadGenerica(name)
         , m_maxHealth(isFromVault ? REFUGIADO_MIN_HEALTH : REFUGIADO_MAX_HEALTH)
         , m_bag(std::move(bag))
         , m_isFromVault(isFromVault)
+        , m_consumeRefugee(
+              isFromVault
+                  ? std::variant<RefugiadoConsumibles, VaultConsumibles> {std::in_place_type<VaultConsumibles>}
+                  : std::variant<RefugiadoConsumibles, VaultConsumibles> {std::in_place_type<RefugiadoConsumibles>})
+
     {
     }
 
