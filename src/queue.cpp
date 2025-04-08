@@ -13,10 +13,7 @@ Queue<TData>::Queue()
 template<typename TData> 
 Queue<TData>::~Queue()
 {
-    while (!isEmpty())
-    {
-        dequeue();
-    }
+    clear();
 }
 
 template<typename TData> 
@@ -25,7 +22,8 @@ void Queue<TData>::enqueue(const TData& value)
     Node* newNode = new Node(value);
     if (isEmpty())
     {
-        m_front = m_rear = newNode;
+        m_front = newNode;
+        m_rear = newNode;
     }
     else
     {
@@ -45,6 +43,8 @@ void Queue<TData>::dequeue()
     auto temp = new Node();
     temp = m_front;
     m_front = m_front->next;
+    delete temp;
+    --m_size;
 }
 
 template<typename TData>
@@ -97,4 +97,5 @@ void Queue<TData>::clear()
     {
         dequeue();
     }
+
 }
