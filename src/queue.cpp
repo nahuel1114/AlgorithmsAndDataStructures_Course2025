@@ -3,8 +3,10 @@
 //
 
 #include "../include/dataStructures/queue.hpp"
-
+#include<event.h>
 #include <iostream>
+
+template class Queue<Event>; // Instancia específica
 
 template<typename TData>
 Queue<TData>::Queue()

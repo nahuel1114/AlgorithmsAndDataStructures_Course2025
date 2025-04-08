@@ -6,6 +6,8 @@
 
 #include <iostream>
 
+template class Stack<std::string>;
+
 template<typename TData>
 Stack<TData>::Stack()
     : m_top(nullptr), m_size(0) {}

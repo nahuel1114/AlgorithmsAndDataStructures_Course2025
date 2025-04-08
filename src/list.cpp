@@ -3,6 +3,9 @@
 //
 
 #include "../include/dataStructures/list.hpp"
+#include "refugio.hpp"
+
+template class DoublyLinkedList<Refugio::Visitante>;
 
 template<typename TData>
 LinkedList<TData>::LinkedList()

@@ -30,6 +30,8 @@ class Refugio : public EntidadGenerica
     {
         std::string nombre;
         EngineData::Faction faccion;
+
+        friend std::ostream& operator<<(std::ostream& os, const Visitante& visitante);
     };
 
 private:
@@ -47,6 +49,8 @@ private:
      * @brief Devuelve la faccion en formato de string para su impresion.
      */
     std::string faccionToString(EngineData::Faction faccion) const;
+
+    friend std::ostream& operator<<(std::ostream& os, const Visitante& visitante);
 
 public:
     /**

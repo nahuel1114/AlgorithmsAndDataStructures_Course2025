@@ -16,6 +16,11 @@ struct Event
     Event(std::string type, std::string description, std::string time)
         : m_type(std::move(type)), m_description(std::move(description)), m_time(std::move(time)) {}
 
+    friend std::ostream& operator<<(std::ostream& os, const Event& event)
+    {
+        os << "Tipo: " << event.m_type << ", Descripción: " << event.m_description << ", Tiempo: " << event.m_time;
+        return os;
+    }
 };
 
 #endif //EVENT_H

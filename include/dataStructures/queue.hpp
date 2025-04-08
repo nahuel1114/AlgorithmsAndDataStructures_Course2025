@@ -8,6 +8,7 @@
  *
  * @tparam TData Tipo de dato almacenado en la cola
  */
+
 template<typename TData>
 class Queue
 {
@@ -81,5 +82,6 @@ public:
 
     void print() const;
 };
+
 
 #endif // QUEUE_HPP

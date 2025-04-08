@@ -1,5 +1,20 @@
 #include "refugio.hpp"
 
+std::string Refugio::faccionToString(EngineData::Faction faccion) const
+{
+    switch (faccion)
+    {
+        case EngineData::Faction::REFUGEES: return "Refugiados";
+        case EngineData::Faction::WATER_MERCHANTS: return "Comerciantes de Agua";
+        case EngineData::Faction::MERCHANTS: return "Comerciantes";
+        case EngineData::Faction::STEEL_BROTHERS: return "Hermanos del Acero";
+        case EngineData::Faction::CARAVAN: return "Caravana";
+        case EngineData::Faction::RAIDERS: return "Asaltantes";
+        case EngineData::Faction::MUTANTS: return "Mutantes";
+        default: return "Desconocida";
+    }
+}
+
 Refugio::Refugio(const std::string& name, const std::string& leader)
     : EntidadGenerica(name)
     , m_leader(leader)
@@ -77,3 +92,12 @@ bool Refugio::isSafeFaction(const EngineData::Faction faccion) const
             faccion == EngineData::Faction::MERCHANTS || faccion == EngineData::Faction::STEEL_BROTHERS ||
             faccion == EngineData::Faction::CARAVAN);
 }
+
+std::ostream& operator<<(std::ostream& os, const Refugio::Visitante& visitante)
+{
+    // Creamos una instancia temporal para llamar a faccionToString (ya que no es static)
+    Refugio dummy("Dummy", "Líder");
+    os << visitante.nombre << " (" << dummy.faccionToString(visitante.faccion) << ")";
+    return os;
+}
+
