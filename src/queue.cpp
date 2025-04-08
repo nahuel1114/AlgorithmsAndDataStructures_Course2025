@@ -79,7 +79,6 @@ void Queue<TData>::print() const
         std::cout << temp->data << " ";
         temp = temp->next;
     }
-    delete temp;
 }
 
 
