@@ -24,78 +24,41 @@ public:
      * @brief Constructor
      * @param nombre Nombre del escuadrón
      */
-    explicit Enclave(const std::string& nombre)
-        : EntidadGenerica(nombre)
-        , m_fuerza(generarFuerza())
-        , m_potencia(generarPotencia())
-        , m_detectado(false)
-    {
-    }
+    explicit Enclave(const std::string& nombre);
 
     /**
      * @brief Muestra información de la escuadra ENCLAVE
      */
-    void showInfo() const override
-    {
-        std::cout << "💂🏻 ENCLAVE - Escuadrón: " << m_name << "\n"
-                  << " - Soldados: " << m_fuerza << "\n"
-                  << " - Potencia táctica: " << m_potencia << "\n"
-                  << " - ¿Han detectado el refugio?: " << (m_detectado ? "Sí" : "No") << "\n";
-    }
+    void showInfo() const override;
 
     /**
      * @brief Simula la detección del refugio
      */
-    void detectarRefugio()
-    {
-        m_detectado = true;
-        std::cout << "💬 " << m_name << " >>> Objetivo confirmado. Preparando ofensiva." << std::endl;
-    }
+    void detectarRefugio();
 
     /**
      * @brief Devuelve si la escuadra ya ha detectado el refugio
      */
-    bool haDetectado() const
-    {
-        return m_detectado;
-    }
+    bool haDetectado() const;
 
     /**
      * @brief Devuelve la fuerza de combate
      */
-    int fuerza() const
-    {
-        return m_fuerza;
-    }
-
+    int fuerza() const;
     /**
      * @brief Devuelve la potencia de ataque
      */
-    double potencia() const
-    {
-        return m_potencia;
-    }
+    double potencia() const;
 
 private:
     /**
      * @brief Genera aleatoriamente una cantidad de soldados entre 10 y 50
      */
-    int generarFuerza() const
-    {
-        static std::mt19937 rng(std::random_device {}());
-        std::uniform_int_distribution<int> dist(10, 50);
-        return dist(rng);
-    }
-
+    int generarFuerza();
     /**
      * @brief Genera aleatoriamente un valor de potencia entre 2.5 y 5.0
      */
-    double generarPotencia() const
-    {
-        static std::mt19937 rng(std::random_device {}());
-        std::uniform_real_distribution<double> dist(2.5, 5.0);
-        return dist(rng);
-    }
+    double generarPotencia() const;
 };
 
 #endif // ENCLAVE_HPP
