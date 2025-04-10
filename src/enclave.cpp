@@ -1,11 +1,10 @@
 #include "enclave.hpp"
 
-explicit Enclave::Enclave(const std::string& nombre)
-: EntidadGenerica(nombre)
-, m_fuerza(generarFuerza())
-, m_potencia(generarPotencia())
-, m_detectado(false)
-
+Enclave::Enclave(const std::string& nombre)
+    : EntidadGenerica(nombre)
+    , m_fuerza(generarFuerza())
+    , m_potencia(generarPotencia())
+    , m_detectado(false)
 {
 }
 
