@@ -51,7 +51,8 @@ void Caravana::evaluarConfianza()
 
 void Caravana::inicializarStock()
 {
-     m_stock.emplace_back(std::make_shared<ArtefactoUnico>("Detector de Radiación", "Herramienta", "Épico", 250.0));
-     m_stock.emplace_back(std::make_shared<ArtefactoUnico>("Pistola Láser Táctica", "Arma", "Legendaria", 400.0));
-     m_stock.emplace_back(std::make_shared<ArtefactoUnico>("Batería de Fusión", "Energía", "Rara", 320.0));
+    m_stock.emplace_back(std::make_shared<ArtefactoUnico>("Detector de Radiación", "Épico", EngineData::UniqueArtifactType::TECHNOLOGY, 250.0));
+    m_stock.emplace_back(std::make_shared<ArtefactoUnico>("Pistola Láser Táctica", "Legendaria", EngineData::UniqueArtifactType::WEAPON, 400.0));
+    m_stock.emplace_back(std::make_shared<ArtefactoUnico>("Batería de Fusión", "Rara", EngineData::UniqueArtifactType::TECHNOLOGY, 320.0));
+
 }
