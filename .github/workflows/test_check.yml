@@ -3,7 +3,9 @@ name: Build & Test with VCPKG + GTest
 
 on:
   push:
+    branches: [master]
   pull_request:
+    types: [opened, ready_for_review, reopened]
 
 jobs:
   build-test:
