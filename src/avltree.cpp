@@ -28,14 +28,19 @@ Node* avltree::insert(Node*& node, const int outpostID, const int priority)
 
      int b = balance(node);
 
-     if (b > 1 && priority < node->left->priority)
-         return rotationRight(node);
-     if (b < -1 && priority > node->right->priority)
+     if (b > 1 && priority < node->left->priority) return rotationRight(node);
+
+     if (b < -1 && priority > node->right->priority) return rotationLeft(node);
+
+     if (b > 1 && priority > node->left->priority){
+        node->left = rotationLeft(node->left);
+        return rotationRight(node);
+     }
+
+     if (b < -1 && priority < node->right->priority){
+         node->right = rotationRight(node->right);
          return rotationLeft(node);
-     if (b > 1 && priority > node->left->priority)
-         return rotationRight(node);
-     if (b < -1 && priority < node->right->priority)
-         return rotationLeft(node);
+     }
 
      return node;
  }
@@ -52,9 +57,57 @@ void avltree::remove(Node*& node, const int outpostID, const int priority)
      else if (priority < node->priority) remove(node->left, outpostID, priority);
      else
      {
-         if (node->outpostID == outpostID) REMOVE & updateHeight();
+         if (node->outpostID == outpostID)
+         {
+             if (node->left == nullptr && node->right == nullptr) delete node;
+             else if (node->left == nullptr)
+             {
+                 Node* temp = node->right;
+                 delete node;
+                 node = temp;
+             }
+             else if (node->right == nullptr)
+             {
+                 Node* temp = node->left;
+                 delete node;
+                 node = temp;
+             }
+             else
+             {
+                 Node* temp = node->left;
+                 while (!temp->right)
+                 {
+                     temp = temp->right;
+                 }
+                 delete node;
+                 node = temp;
+             }
+         }
          else if (!node->right) remove(node->right, outpostID, priority);
      }
+
+     checks_rotation(node);
+ }
+
+void avltree::checks_rotation(Node*& node)
+ {
+     updateHeight(node);
+     int b = balance(node);
+
+     if (b > 1 && !node->left->left) rotationRight(node);
+
+     if (b < -1 && !node->right->right) rotationLeft(node);
+
+     if (b > 1 && !node->left->right){
+         node->left = rotationLeft(node->left);
+         rotationRight(node);
+     }
+
+     if (b < -1 && !node->right->left){
+         node->right = rotationRight(node->right);
+         rotationLeft(node);
+     }
+
  }
 
 bool avltree::contain(const int outpostID,const int priority)

@@ -34,6 +34,7 @@ private:
 
     Node* insert(Node*& node, const int outpostID, const int priority);
     void remove(Node*& node, const int outpostID, const int priority);
+    void checks_rotation(Node*& node);
     bool contain(Node*& node, const int outpostID, const int priority) const;
     int find(Node*& node, bool action);
     void printInOrder(Node*& node) const;
