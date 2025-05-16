@@ -17,7 +17,8 @@ file(GLOB_RECURSE SRC_FILES "${CMAKE_SOURCE_DIR}/src/*.cpp")
 # Define el ejecutable y sus archivos fuente
 add_executable(${CMAKE_PROJECT_NAME} ${SRC_FILES}
         include/dataStructures/decisionTree.hpp
-        src/decisionTree.cpp)
+        src/decisionTree.cpp
+)
 
 # Establece el directorio de inclusión para los archivos de cabecera usando target_include_directories
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/include")

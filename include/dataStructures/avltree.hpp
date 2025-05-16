@@ -33,14 +33,15 @@ private:
     int number_of_nodes;
 
     Node* insert(Node*& node, const int outpostID, const int priority);
-    void remove(Node*& node, const int outpostID, const int priority);
-    void checks_rotation(Node*& node);
+    Node* remove(Node*& node, const int outpostID, const int priority);
+    Node* checks_rotation(Node*& node);
     bool contain(Node*& node, const int outpostID, const int priority) const;
     int find(Node*& node, bool action);
     void printInOrder(Node*& node) const;
     void printStats_p() const;
     void destroy(Node*& node);
     void updateHeight(Node*& node) const;
+    int height(Node*& node) const;
     int balance(Node*& node);
     Node* rotationLeft(Node*& node);
     Node* rotationRight(Node*& node);
